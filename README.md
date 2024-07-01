@@ -1,2 +1,32 @@
 # AO
-Official repository for CVPR 2024 paper: Weakly Supervised Point Cloud Semantic Segmentation via Artificial Oracle The code will be available soon.
+Official repository for CVPR 2024 paper: "**Weakly Supervised Point Cloud Semantic Segmentation via Artificial Oracle**"
+
+## Prerequisite
+* Tested on Ubuntu 20.04, with Python 3.8, PyTorch 1.12.1, CUDA 11.6 with 4 GPUs.
+* [S3DIS](https://github.com/alexsax/2D-3D-Semantics) dataset: Download dataset and place under ./data/S2D3D folder.
+* [PointTransformer V2](https://github.com/Pointcept/Pointcept/tree/main): Prepare environment and github repository introduced for "PointTransformer V2". Also, you need to follow "Data Preparation" for S3DIS dataset and place resultant files to ./data/s3dis folder.
+* Please install [SAM](https://github.com/facebookresearch/segment-anything) and download vit_h version as ./pretrained/sam_vit_h_4b8939.pth
+* You need to run PP2S module usins SAM as preprocessing. You need to get "SAM embeddings, bridges for image and point cloud, weak_labels, basket and sam_lables". Please refer to "my_decode_embedding_final.py, my_make_bridge_final.py, my_choose_weak_label_final.py, my_make_basket_final.py, my_run_sam_final.py" in ./pointcept/utils/~.
+* You need "used image lists" and "angle and center for alignment". You can download in [used_images](https://drive.google.com/drive/folders/1sjH7DYl5OagmFtIHeTEN62daZXOed0cA?usp=sharing) and [align_angle_and_center](https://drive.google.com/drive/folders/1lEh0N-cYJypq8wlDRJR4uWFIO-pyH-Fe?usp=sharing). Place them under ./used_images and ./data/align_angle_and_center.
+
+## Training
+* For training only with PP2S module, use following command:
+```
+sh scripts/train_pp2s.sh -g 4 -d s3dis -c semseg-pt-v2m2-0-base -n {exp_name}
+```
+* For training whole framework, you need to place checkpoint for from PP2S result under ./pretrained folder. Then, use following command:
+```
+sh scripts/train_real.sh -g 4 -d s3dis -c semseg-pt-v2m2-0-sam-final -n {exp_name}
+```
+
+## Citation
+If our code be useful for you, please consider citing our CVPR 2024 paper using the following BibTeX entry.
+```
+@inproceedings{kweon2024weakly,
+  title={Weakly Supervised Point Cloud Semantic Segmentation via Artificial Oracle},
+  author={Kweon, Hyeokjun and Kim, Jihun and Yoon, Kuk-Jin},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={3721--3731},
+  year={2024}
+}
+```
