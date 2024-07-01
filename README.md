@@ -1,5 +1,6 @@
 # AO
-Official repository for CVPR 2024 paper: "**Weakly Supervised Point Cloud Semantic Segmentation via Artificial Oracle**"
+Official repository for CVPR 2024 paper: "**Weakly Supervised Point Cloud Semantic Segmentation via Artificial Oracle**" by [Hyeokjun Kweon](https://scholar.google.com/citations?user=em3aymgAAAAJ&hl=en&oi=ao) and [Jihun Kim](https://scholar.google.com/citations?user=8UVicysAAAAJ&hl=ko).
+This code is implemented based on [pointcept repository](https://github.com/Pointcept/Pointcept/tree/main).
 
 ## Prerequisite
 * Tested on Ubuntu 20.04, with Python 3.8, PyTorch 1.12.1, CUDA 11.6 with 4 GPUs.
